@@ -10,40 +10,84 @@ import 'swiper/css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Navigation, Pagination } from 'swiper/modules';
 import '../src/App.css';
-import { useState } from "react";
+import Home from "./HomeComponent/Home";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 function App() {
-  const [isReadMore, setIsReadMore] = useState(false);
-
-  const toggleReadMore = () => {
-    setIsReadMore(!isReadMore);
-  };
 
   return (
     <>
       <div className="max-w-[1250px] p-0">
         <div className="flex  justify-center p-0">
           {/* sidebar  */}
-          <div className="w-[200px] bg-white p-10">
+          <div className="w-[210px] bg-white p-10">
             <h1 className="text-4xl  text-blue-500 text-center mt-10">Logo</h1>
-            <div className="mt-10">
-              <ul className="space-y-4">
-                <li className="flex gap-4 items-center"><FaHome />Home</li>
-                <li className="flex gap-4 items-center"><FaUserFriends />New Listing</li>
+            <div className="mt-8">
+              <div className="space-y-4 w-[210px]">
+              <NavLink
+                  to="/"
+                  className="w-[210px] p-2 flex"
+                  style={({ isActive }) =>
+                    isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+                  }
+                  >
+                <p className="flex gap-4 items-center"><FaHome />Home</p>
+                </NavLink>
+              <NavLink to="new"
+              className="w-[210px] p-2 flex"
+              style={({ isActive }) =>
+                isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+              }
+              >  <li className="flex gap-4 items-center"><FaUserFriends />New Listing</li>
+              </NavLink>
+                <NavLink to="search"
+              className="w-[210px] p-2 flex"
+              style={({ isActive }) =>
+                isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+              }
+              > 
                 <li className="flex gap-4 items-center"><CiSearch />Search</li>
+                </NavLink>
+                <NavLink to="about"
+              className="w-[210px] p-2 flex"
+              style={({ isActive }) =>
+                isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+              }
+              > 
                 <li className="flex gap-4 items-center"><IoDocumentTextOutline />About</li>
+                </NavLink>
+                <NavLink to="favoutite"
+              className="w-[210px] p-2 flex"
+              style={({ isActive }) =>
+                isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+              }
+              > 
                 <li className="flex gap-4 items-center"><CiHeart />Favourites</li>
+                </NavLink>
                 <hr />
+                <NavLink to="help"
+              className="w-[210px] p-2 flex"
+              style={({ isActive }) =>
+                isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+              }
+              > 
                 <li className="flex gap-4 items-center"><MdOutlineLiveHelp />Help Center</li>
+                </NavLink>
+                <NavLink to="setting"
+              className="w-[210px] p-2 flex"
+              style={({ isActive }) =>
+                isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+              }
+              > 
                 <li className="flex gap-4 items-center"><CiSettings />Settings</li>
-              </ul>
+                </NavLink>
+              </div>
             </div>
           </div>
 
           {/* main */}
-          <div className="w-[1000px] bg-[#eef3f4] h-[2000px] p-0">
+          <div className="w-[1000px] bg-[#eef3f4]  p-0">
             <div className="w-[1000px]">
               {/* nav bar */}
               <div className="flex justify-between w-[1000px] bg-base-100 ">
@@ -62,8 +106,8 @@ function App() {
                 </div>
                 <div className="w-[200px]">
                   <div className="flex items-center gap-2">
-                    <div><IoIosNotificationsOutline /></div>
-                    <h1 className="flex items-center gap-2">Log Out <span className="bg-[#feeceb] p-2 rounded-full"><CiLogout /></span></h1>
+                    <div className="text-2xl"><IoIosNotificationsOutline /></div>
+                    <NavLink to="/login"><h1 className="flex items-center gap-2">Log Out <span className="bg-[#feeceb] p-2 rounded-full"><CiLogout /></span></h1></NavLink>
                   </div>
                   <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -96,260 +140,8 @@ function App() {
                   </div>
                 </div>
               </div>
-              {/* featured therapist section */}
-              <div className="flex justify-between bg-white mt-6 w-[960px] mx-auto p-4 rounded-md ">
-                <div>
-                  <h1 className="font-semibold text-xl">I'am Looking For Massege Therapist Near</h1>
-                  <p className="mt-2">I'am using this site, I agree to be bound by the <a className="underline text-blue-700" href="#">Terms of service</a><br />
-                    and <a className="underline text-blue-700" href="#">Privacy policy</a>
-                  </p>
-                  <div>
-                    <label className="input w-[500px] input-bordered flex items-center gap-2 mt-4
-                   bg-[#eef3f4]">
-                      <input type="text" className="grow bg-[#eef3f4] " placeholder="ZIP Code or City Name" />
-                      <p className="bg-[#146bcb] text-white p-2 rounded-xl">Go</p>
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <img src="image/home.JPG" alt="" />
-                </div>
-              </div>
-              {/* slider */}
-              <div>
-                <h1 className="mt-2 ml-4 text-3xl font-bold">Featured Therapist</h1>
-                <div className="w-[950px] z-0 bg-white mx-auto p-10 mt-4">
-                  <Swiper
-                    slidesPerView={3}
-                    centeredSlides={false}
-                    slidesPerGroupSkip={2}
-                    grabCursor={true}
-                    keyboard={{
-                      enabled: true,
-                    }}
-                    breakpoints={{
-                      769: {
-                        slidesPerView: 3,
-                        slidesPerGroup: 2,
-                      },
-                    }}
-                    navigation={true}
-                    modules={[Navigation]}
-                    className="mySwiper w-[900px] h-[450px] mt-4 bg-white "
-                  >
-                    <SwiperSlide>
-                      <div className="w-56">
-                        <figure>
-                          <img
-                            className="w-full h-[200px] rounded-md"
-                            src="image/1.JPG"
-                            alt="Shoes" />
-                        </figure>
-                        <div className="card-body">
-                          <h2 className="card-title">Alexender Cart</h2>
-                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
-                          <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
-                          <div className="card-actions w-full">
-                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="w-56">
-                        <figure>
-                          <img
-                            className="w-full h-[200px] rounded-md"
-                            src="image/1.JPG"
-                            alt="Shoes" />
-                        </figure>
-                        <div className="card-body">
-                          <h2 className="card-title">Alexender Cart</h2>
-                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
-                          <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
-                          <div className="card-actions w-full">
-                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="  w-56 ">
-                        <figure>
-                          <img
-                            className="w-full h-[200px] rounded-md"
-                            src="image/1.JPG"
-                            alt="Shoes" />
-                        </figure>
-                        <div className="card-body">
-                          <h2 className="card-title">Alexender Cart</h2>
-                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
-                          <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
-                          <div className="card-actions w-full">
-                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className="  w-56 ">
-                        <figure>
-                          <img
-                            className="w-full h-[200px] rounded-md"
-                            src="image/1.JPG"
-                            alt="Shoes" />
-                        </figure>
-                        <div className="card-body">
-                          <h2 className="card-title">Alexender Cart</h2>
-                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
-                          <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
-                          <div className="card-actions w-full">
-                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                  </Swiper>
-                </div>
-              </div>
-              {/* testimonial section */}
-              <div className="mt-4 ml-5">
-                <h1 className="font-bold text-3xl">Featured Testimonial</h1>
-              </div>
-              <div className="flex w-[1000px] mt-10 ">
-                <div className="w-[490px] bg-white h-[500px] p-4 ml-4 rounded-md">
-                  <Swiper
-                    pagination={{
-                      dynamicBullets: true,
-                    }}
-                    modules={[Pagination]}
-                    className="mySwiper"
-                  >
-                    <SwiperSlide>
-                      <div>
-                        <div >
-                          <div className="card card-side bg-base-100 shadow-md">
-                            <figure>
-                              <img
-                            
-                                src="/image/s1.JPG"
-                                alt="Movie" />
-                            </figure>
-                            <div className="card-body">
-                              <h2 className="flex items-center gap-2"><FaLocationDot /> 123 Elm Street,Newyork</h2>
-                              <p>Healing body work <span className="text-blue-700"><i>by Cart</i></span></p>
-                              <p className="text-sm">
-                                Cart's healing bodywork massage was <br />
-                                absolutely transformative. Their infuitive touch <br />
-                                and deep understanding at {isReadMore && "muscle tension provided a deeply relaxing experience that left me feeling rejuvenated and free of stress."} <button onClick={toggleReadMore}>{isReadMore ? <span className="underline text-blue-600">Show less</span> : <span className="underline text-blue-600">Read More</span>}</button>
-                              </p>
-                            </div>
-                          </div>
-                          <div className="card card-side bg-base-100  mt-4 shadow-md">
-                            <figure>
-                              <img
-                                src="/image/s2.JPG"
-                                alt="Movie" />
-                            </figure>
-                            <div className="card-body">
-                              <h2 className="flex items-center gap-2"><FaLocationDot /> 123 Elm Street,Newyork</h2>
-                              <p>Healing body work <span className="text-blue-700"><i>by Cart</i></span></p>
-                              <p className="text-sm">
-                                Cart's healing bodywork massage was <br />
-                                absolutely transformative. Their infuitive touch <br />
-                                and deep understanding at {isReadMore && "muscle tension provided a deeply relaxing experience that left me feeling rejuvenated and free of stress."} <button onClick={toggleReadMore}>{isReadMore ? <span className="underline text-blue-600">Show less</span> : <span className="underline text-blue-600">Read More</span>}</button>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                      <div>
-                        <div >
-                          <div className="card card-side bg-base-100 shadow-md">
-                            <figure>
-                              <img
-                            
-                                src="/image/s1.JPG"
-                                alt="Movie" />
-                            </figure>
-                            <div className="card-body">
-                              <h2 className="flex items-center gap-2"><FaLocationDot /> 123 Elm Street,Newyork</h2>
-                              <p>Healing body work <span className="text-blue-700"><i>by Cart</i></span></p>
-                              <p className="text-sm">
-                                Cart's healing bodywork massage was <br />
-                                absolutely transformative. Their infuitive touch <br />
-                                and deep understanding at {isReadMore && "muscle tension provided a deeply relaxing experience that left me feeling rejuvenated and free of stress."} <button onClick={toggleReadMore}>{isReadMore ? <span className="underline text-blue-600">Show less</span> : <span className="underline text-blue-600">Read More</span>}</button>
-                              </p>
-                            </div>
-                          </div>
-                          <div className="card card-side bg-base-100  mt-4 shadow-md">
-                            <figure>
-                              <img
-                                src="/image/s2.JPG"
-                                alt="Movie" />
-                            </figure>
-                            <div className="card-body">
-                              <h2 className="flex items-center gap-2"><FaLocationDot /> 123 Elm Street,Newyork</h2>
-                              <p>Healing body work <span className="text-blue-700"><i>by Cart</i></span></p>
-                              <p className="text-sm">
-                                Cart's healing bodywork massage was <br />
-                                absolutely transformative. Their infuitive touch <br />
-                                and deep understanding at {isReadMore && "muscle tension provided a deeply relaxing experience that left me feeling rejuvenated and free of stress."} <button onClick={toggleReadMore}>{isReadMore ? <span className="underline text-blue-600">Show less</span> : <span className="underline text-blue-600">Read More</span>}</button>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                      <div>
-                        <div >
-                          <div className="card card-side bg-base-100 shadow-md">
-                            <figure>
-                              <img
-                            
-                                src="/image/s1.JPG"
-                                alt="Movie" />
-                            </figure>
-                            <div className="card-body">
-                              <h2 className="flex items-center gap-2"><FaLocationDot /> 123 Elm Street,Newyork</h2>
-                              <p>Healing body work <span className="text-blue-700"><i>by Cart</i></span></p>
-                              <p className="text-sm">
-                                Cart's healing bodywork massage was <br />
-                                absolutely transformative. Their infuitive touch <br />
-                                and deep understanding at {isReadMore && "muscle tension provided a deeply relaxing experience that left me feeling rejuvenated and free of stress."} <button onClick={toggleReadMore}>{isReadMore ? <span className="underline text-blue-600">Show less</span> : <span className="underline text-blue-600">Read More</span>}</button>
-                              </p>
-                            </div>
-                          </div>
-                          <div className="card card-side bg-base-100  mt-4 shadow-md">
-                            <figure>
-                              <img
-                                src="/image/s2.JPG"
-                                alt="Movie" />
-                            </figure>
-                            <div className="card-body">
-                              <h2 className="flex items-center gap-2"><FaLocationDot /> 123 Elm Street,Newyork</h2>
-                              <p>Healing body work <span className="text-blue-700"><i>by Cart</i></span></p>
-                              <p className="text-sm">
-                                Cart's healing bodywork massage was <br />
-                                absolutely transformative. Their infuitive touch <br />
-                                and deep understanding at {isReadMore && "muscle tension provided a deeply relaxing experience that left me feeling rejuvenated and free of stress."} <button onClick={toggleReadMore}>{isReadMore ? <span className="underline text-blue-600">Show less</span> : <span className="underline text-blue-600">Read More</span>}</button>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                   
-                   
-                  </Swiper>
-                </div>
-                {/* <div className="w-[500px]">r</div> */}
-              </div>
+              <Outlet></Outlet>
+             {/* <Home></Home> */}
             </div>
           </div>
         </div>
