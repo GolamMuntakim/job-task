@@ -16,23 +16,30 @@ import Settings from './HomeComponent/Settings.jsx';
 import Login from './HomeComponent/Login.jsx';
 import SignUp from './HomeComponent/SignUp.jsx';
 import AuthProvider from './HomeComponent/AuthProvider.jsx';
+import ErrorElement from './HomeComponent/ErrorElement.jsx';
+import Details from './HomeComponent/Details.jsx';
+import PrivateRoute from './HomeComponent/PrivateRoute.jsx';
+import { HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement:<ErrorElement></ErrorElement>,
     children:[
       {
         path:"/",
-        element:<Home></Home>
+        element:<Home></Home>,
+        loader:()=>fetch('http://localhost:5000/new')
       },
       {
         path:"new",
-        element:<NewListing></NewListing>
+        element:<PrivateRoute><NewListing></NewListing></PrivateRoute>
       },
       {
         path:"search",
-        element:<Search></Search>
+        element:<PrivateRoute><Search></Search></PrivateRoute>,
+        loader:()=>fetch('http://localhost:5000/new')
       },
       {
         path:"about",
@@ -48,7 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path:"setting",
-        element:<Settings></Settings>
+        element:<PrivateRoute><Settings></Settings></PrivateRoute>
+      },
+      {
+        path:"/:id",
+        element:<PrivateRoute><Details></Details></PrivateRoute>
       }
     ]
   },
@@ -58,8 +69,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
+   <HelmetProvider>
+   <AuthProvider>
     <RouterProvider router={router} />
     </AuthProvider>
+   </HelmetProvider>
   </React.StrictMode>,
 )

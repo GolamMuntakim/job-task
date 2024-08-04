@@ -8,17 +8,63 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 import '.././App.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
+  const initialSpots = useLoaderData()
+  // const [place, setPlace] = useState({})
+  // const {id} = useParams()
+  console.log(initialSpots)
     const [isReadMore, setIsReadMore] = useState(false);
+    const [searchInput, setSearchInput] = useState("");
+    const citiesList = [
+        "Atlana,GA",
+        "Indianapolis,IN",
+        "Philadephea,PA",
+        "Boston,MA",
+        "Jacksonvilla,FL",
+        "Queens,NY",
+        "Chicago,IL",
+        "Los Angelas,CA",
+        "San Antanio,Tx",
+        "El Paso,Tx",
+        "Miamo,FL",
+        "Tucson,AZ",
+        "Fresno,CA",
+        "Nashvilla,TN",
+        "Upland,CA",
+        "Huston,TX",
+        "Okhlamo City,OK",
+        "Washington,D.C",
+    ];
+const handleSearchChange = (e) => {
+  setSearchInput(e.target.value);
+};
+
+const filteredCities = citiesList.filter(city => city.toLowerCase().includes(searchInput.toLowerCase()));
 
     const toggleReadMore = () => {
       setIsReadMore(!isReadMore);
     };
+  //   useEffect(()=>{
+  //     fetch(`http://localhost:5000/single/${id}`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //         setPlace(data)
+  //         console.log(data)
+         
+  //     })
+  // },[id])
   
     return (
         <div>
+           <Helmet>
+                <title>
+                    Home
+                </title>
+            </Helmet>
              {/* featured therapist section */}
              <div className="flex flex-col lg:flex-row justify-between bg-white mt-6 w-full lg:w-[960px] mx-auto p-4 rounded-md ">
                 <div>
@@ -29,8 +75,8 @@ const Home = () => {
                   <div className="hidden lg:flex">
                     <label className="input w-full lg:w-[500px] input-bordered flex items-center gap-2 mt-4
                    bg-[#eef3f4]">
-                      <input type="text" className="grow bg-[#eef3f4] " placeholder="ZIP Code or City Name" />
-                      <p className="bg-[#146bcb] text-white p-2 rounded-xl">Go</p>
+                      <input type="text" className="grow bg-[#eef3f4] " placeholder="ZIP Code or City Name" value={searchInput} onChange={handleSearchChange}/>
+                      <p className="bg-[#146bcb] text-white p-3 rounded-xl">Go</p>
                     </label>
                   </div>
                 </div>
@@ -40,7 +86,7 @@ const Home = () => {
                 <div className="lg:hidden flex">
                     <label className="input w-[500px] input-bordered flex items-center gap-2 mt-4
                    bg-[#eef3f4]">
-                      <input type="text" className="grow bg-[#eef3f4] " placeholder="ZIP Code or City Name" />
+                      <input type="text" className="grow bg-[#eef3f4] " placeholder="ZIP Code or City Name" value={searchInput} onChange={handleSearchChange}/>
                       <p className="bg-[#146bcb] text-white p-2 rounded-xl">Go</p>
                     </label>
                   </div>
@@ -72,15 +118,18 @@ const Home = () => {
                         <figure>
                           <img
                             className="w-full h-[200px] rounded-md"
-                            src="image/1.JPG"
+                            src={initialSpots[0]?.image}
+                            
                             alt="Shoes" />
                         </figure>
                         <div className="card-body">
-                          <h2 className="card-title">Alexender Cart</h2>
-                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
+                          <h2 className="card-title">{initialSpots[0]?.name}</h2>
+                          <p className="flex items-center gap-4"><IoLocationSharp />{initialSpots[0]?.location}</p>
                           <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
                           <div className="card-actions w-full">
-                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
+                           <Link 
+                           state={{ name: initialSpots[0]?.name, image: initialSpots[0]?.image, location: initialSpots[0]?.location }} 
+                           to={initialSpots[0]?._id}> <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button></Link>
                           </div>
                         </div>
                       </div>
@@ -90,15 +139,33 @@ const Home = () => {
                         <figure>
                           <img
                             className="w-full h-[200px] rounded-md"
-                            src="image/1.JPG"
+                            src={initialSpots[1]?.image}
                             alt="Shoes" />
                         </figure>
                         <div className="card-body">
-                          <h2 className="card-title">Alexender Cart</h2>
-                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
+                          <h2 className="card-title">{initialSpots[1]?.name}</h2>
+                          <p className="flex items-center gap-4"><IoLocationSharp />{initialSpots[0]?.location}</p>
                           <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
                           <div className="card-actions w-full">
-                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
+                          <Link to={initialSpots[1]?._id}> <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button></Link>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className=" w-full lg:w-56 ">
+                        <figure>
+                          <img
+                            className="w-full h-[200px] rounded-md object-cover"
+                            src={initialSpots[2]?.image}
+                            alt="Shoes" />
+                        </figure>
+                        <div className="card-body">
+                          <h2 className="card-title">{initialSpots[2]?.name}</h2>
+                          <p className="flex items-center gap-4"><IoLocationSharp />{initialSpots[2]?.location}</p>
+                          <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
+                          <div className="card-actions w-full">
+                          <Link to={initialSpots[2]?._id}> <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button></Link>
                           </div>
                         </div>
                       </div>
@@ -108,39 +175,22 @@ const Home = () => {
                         <figure>
                           <img
                             className="w-full h-[200px] rounded-md"
-                            src="image/1.JPG"
+                            src={initialSpots[3]?.image}
                             alt="Shoes" />
                         </figure>
                         <div className="card-body">
-                          <h2 className="card-title">Alexender Cart</h2>
-                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
+                          <h2 className="card-title">{initialSpots[3]?.name}</h2>
+                          <p className="flex items-center gap-4"><IoLocationSharp />{initialSpots[3]?.location}</p>
                           <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
                           <div className="card-actions w-full">
-                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className=" w-full lg:w-56 ">
-                        <figure>
-                          <img
-                            className="w-full h-[200px] rounded-md"
-                            src="image/1.JPG"
-                            alt="Shoes" />
-                        </figure>
-                        <div className="card-body">
-                          <h2 className="card-title">Alexender Cart</h2>
-                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
-                          <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
-                          <div className="card-actions w-full">
-                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
+                          <Link to={initialSpots[3]?._id}> <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button></Link>
                           </div>
                         </div>
                       </div>
                     </SwiperSlide>
                   </Swiper>
                 </div>
+
                 <div className="lg:hidden flex  w-full lg:w-[950px] z-0 bg-white mx-auto mt-4">
                   <Swiper
                     slidesPerView={1}
@@ -164,15 +214,18 @@ const Home = () => {
                         <figure>
                           <img
                             className="w-full h-[200px] rounded-md"
-                            src="image/1.JPG"
+                            src={initialSpots[0]?.image}
+                            
                             alt="Shoes" />
                         </figure>
                         <div className="card-body">
-                          <h2 className="card-title">Alexender Cart</h2>
-                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
+                          <h2 className="card-title">{initialSpots[0]?.name}</h2>
+                          <p className="flex items-center gap-4"><IoLocationSharp />{initialSpots[0]?.location}</p>
                           <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
                           <div className="card-actions w-full">
-                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
+                           <Link 
+                           state={{ name: initialSpots[0]?.name, image: initialSpots[0]?.image, location: initialSpots[0]?.location }} 
+                           to={initialSpots[0]?._id}> <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button></Link>
                           </div>
                         </div>
                       </div>
@@ -182,33 +235,33 @@ const Home = () => {
                         <figure>
                           <img
                             className="w-full h-[200px] rounded-md"
-                            src="image/1.JPG"
+                            src={initialSpots[1]?.image}
                             alt="Shoes" />
                         </figure>
                         <div className="card-body">
-                          <h2 className="card-title">Alexender Cart</h2>
-                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
+                          <h2 className="card-title">{initialSpots[1]?.name}</h2>
+                          <p className="flex items-center gap-4"><IoLocationSharp />{initialSpots[0]?.location}</p>
                           <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
                           <div className="card-actions w-full">
-                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
+                          <Link to={initialSpots[1]?._id}> <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button></Link>
                           </div>
                         </div>
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                      <div className="w-full lg:w-56 ">
+                      <div className=" w-full lg:w-56 ">
                         <figure>
                           <img
-                            className="w-full h-[200px] rounded-md"
-                            src="image/1.JPG"
+                            className="w-full h-[200px] rounded-md object-cover"
+                            src={initialSpots[2]?.image}
                             alt="Shoes" />
                         </figure>
                         <div className="card-body">
-                          <h2 className="card-title">Alexender Cart</h2>
-                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
+                          <h2 className="card-title">{initialSpots[2]?.name}</h2>
+                          <p className="flex items-center gap-4"><IoLocationSharp />{initialSpots[2]?.location}</p>
                           <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
                           <div className="card-actions w-full">
-                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
+                          <Link to={initialSpots[2]?._id}> <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button></Link>
                           </div>
                         </div>
                       </div>
@@ -218,15 +271,15 @@ const Home = () => {
                         <figure>
                           <img
                             className="w-full h-[200px] rounded-md"
-                            src="image/1.JPG"
+                            src={initialSpots[3]?.image}
                             alt="Shoes" />
                         </figure>
                         <div className="card-body">
-                          <h2 className="card-title">Alexender Cart</h2>
-                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
+                          <h2 className="card-title">{initialSpots[3]?.name}</h2>
+                          <p className="flex items-center gap-4"><IoLocationSharp />{initialSpots[3]?.location}</p>
                           <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
                           <div className="card-actions w-full">
-                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
+                          <Link to={initialSpots[3]?._id}> <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button></Link>
                           </div>
                         </div>
                       </div>
@@ -381,27 +434,13 @@ const Home = () => {
               </div>
                 <div className=" bg-white h-[500px] lg:p-4 lg:ml-4 rounded-md mt-4">
                <div className="grid grid-cols-3 col-span-3 gap-5 lg:gap-10">
-                <a className="text-blue-600 underline" href="#">Atlana,GA</a>
-                <a className="text-blue-600 underline"  href="#">Indianapolis,IN</a>
-                <a className="text-blue-600 underline"  href="#">Philadephea,PA</a>
-               <a className="text-blue-600 underline"  href="#">Boston,MA</a>
-               <a className="text-blue-600 underline"  href="#">Jacksonvilla,FL</a>
-               <a className="text-blue-600 underline"  href="#">Queens,NY</a>
-               <a className="text-blue-600 underline"  href="#">Chicago,IL</a>
-               <a className="text-blue-600 underline"  href="#">Kanas City,MO</a>
-               <a className="text-blue-600 underline"  href="#">Raleigh,NC</a>
-               <a className="text-blue-600 underline"  href="#">Chicago,IL</a>
-               <a className="text-blue-600 underline"  href="#">Los Angelas,CA</a>
-               <a className="text-blue-600 underline"  href="#">San Antanio,Tx</a>
-               <a className="text-blue-600 underline"  href="#">El Paso,Tx</a>
-               <a className="text-blue-600 underline"  href="#">Miamo,FL</a>
-               <a className="text-blue-600 underline"  href="#">Tucson,AZ</a>
-               <a className="text-blue-600 underline"  href="#">Fresno,CA</a>
-               <a className="text-blue-600 underline"  href="#">Nashvilla,TN</a>
-               <a className="text-blue-600 underline"  href="#">Upland,CA</a>
-               <a className="text-blue-600 underline"  href="#">Huston,TX</a>
-               <a className="text-blue-600 underline"  href="#">Okhlamo City,OK</a>
-               <a className="text-blue-600 underline"  href="#">Washington,D.C</a>
+               <ul className="mt-4 grid grid-cols-3 col-span-3 gap-2 lg:gap-10">
+                    {filteredCities.map((city, index) => (
+                        <a href="#" key={index} className=" rounded-md underline text-blue-600">
+                            {city}
+                        </a>
+                    ))}
+                </ul>
                </div>
                  
                 </div>
