@@ -53,9 +53,9 @@ const Login = () => {
       }
     return (
         <div>
-            <div className="hero bg-base-100 min-h-screen">
-                <div className="hero-content flex-col lg:flex-row-reverse w-[1200px]">
-                    <div className="w-[500px]">
+            <div className="hero bg-base-100 min-h-screen bg-[url('/image/log.JPG')]">
+                <div className="hero-content flex-col lg:flex-row-reverse w-full lg:w-[1200px]">
+                    <div className="hidden lg:flex w-[500px]">
                         <Swiper pagination={true} modules={[Pagination]} className="mySwiper h-[550px] bg-[url('../../public/image/bg.JPG')] rounded-md" >
                             <SwiperSlide>
                                <div className="flex justify-center items-center mt-56">
@@ -84,7 +84,7 @@ const Login = () => {
                         </Swiper>
                     </div>
 
-                    <div className="card bg-base-100  max-w-sm shrink-0 w-[500px]">
+                    <div className="card bg-base-100 fixed lg:w-[500px] p-14 mt-72">
                         <div>
                             <h1 className="text-4xl text-blue-600 ml-4">LOGO</h1>
                             <h1 className="font-semibold ml-4 text-2xl mt-2">Log In To Your Account</h1>

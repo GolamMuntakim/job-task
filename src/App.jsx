@@ -1,5 +1,5 @@
 import {  FaHome, FaUserFriends } from "react-icons/fa";
-import { CiSearch, CiHeart, CiSettings, CiLogout } from "react-icons/ci";
+import { CiSearch, CiHeart, CiSettings, CiLogout, CiLogin } from "react-icons/ci";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { MdOutlineLiveHelp } from "react-icons/md";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -87,12 +87,13 @@ function App() {
         </div>
 
           {/* main */}
-          <div className="w-[1000px] bg-[#eef3f4]  p-0">
-            <div className="w-[1000px]">
+          <div className="w-full lg:w-[1000px] bg-[#eef3f4]  p-0">
+            <div className="w-full lg:w-[1000px]">
               {/* nav bar */}
-              <div className="flex justify-between w-[1000px] bg-base-100 ">
-                <div className="w-[500px]">
-                  <a className=" ">
+              <div className="flex justify-between w-full lg:w-[1000px] bg-base-100 ">
+                <div className="w-full lg:w-[500px]">
+                  <div className="flex lg:hidden text-xl text-blue-600">Logo</div>
+                  <a className="hidden lg:flex">
                     <div className="flex gap-4">
                       <div>
                         {
@@ -106,15 +107,15 @@ function App() {
                     </div>
                   </a>
                 </div>
-                <div className="w-[200px]">
-                  <div className="flex items-center gap-2">
+                <div className="w-full lg:w-[200px]">
+                 <div className="hidden lg:flex">
+                 <div className="flex items-center gap-2">
                     <div className="text-2xl"><IoIosNotificationsOutline /></div>
                     {user ?   <button  onClick={logOut}>logout</button> :  <NavLink to="/login"><h1 className="flex items-center gap-2">Log in <span className="bg-[#feeceb] p-2 rounded-full"><CiLogout /></span></h1></NavLink>}
-                   
-                  
                   </div>
+                 </div>
                   <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden pl-52">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"
@@ -130,16 +131,80 @@ function App() {
                     </div>
                     <ul
                       tabIndex={0}
-                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                      <li><a>Item 1</a></li>
-                      <li>
-                        <a>Parent</a>
-                        <ul className="p-2">
-                          <li><a>Submenu 1</a></li>
-                          <li><a>Submenu 2</a></li>
-                        </ul>
-                      </li>
-                      <li><a>Item 3</a></li>
+                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-60 p-2 shadow">
+                      <div className="flex  items-center text-right justify-items-end justify-end bg-blue-600 p-2 ">
+                        <div className="pt-10 text-right flex flex-col justify-end w-full">
+                        {
+                          user?.photoURL ? <img className="rounded-full w-12 relative -right-36" src={user?.photoURL} /> : <img className="rounded-full w-12 relative -right-36" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                        }
+                        <div>
+                         <p className="text-white font-bold mt-2">{user?.displayName}</p>
+                         <br />
+                        <p className="font-bold"> {user?.email}</p>
+                        </div>
+                        </div>
+                      </div>
+                    
+                      <div className="space-y-2">
+                      <NavLink
+                  to="/"
+                  className=" flex"
+                  style={({ isActive }) =>
+                    isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+                  }
+                  >
+                <p className="flex gap-4 items-center"><FaHome />Home</p>
+                </NavLink>
+              <NavLink to="new"
+              className="flex"
+              style={({ isActive }) =>
+                isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+              }
+              >  <p className="flex gap-4 items-center"><FaUserFriends />New Listing</p>
+              </NavLink>
+                <NavLink to="search"
+              className="  flex"
+              style={({ isActive }) =>
+                isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+              }
+              > 
+                <p className="flex gap-4 items-center"><CiSearch />Search</p>
+                </NavLink>
+                <NavLink to="about"
+              className="  flex"
+              style={({ isActive }) =>
+                isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+              }
+              > 
+                <p className="flex gap-4 items-center"><IoDocumentTextOutline />About</p>
+                </NavLink>
+                <NavLink to="favoutite"
+              className=" flex"
+              style={({ isActive }) =>
+                isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+              }
+              > 
+                <p className="flex gap-4 items-center"><CiHeart />Favourites</p>
+                </NavLink>
+                <hr />
+                <NavLink to="help"
+              className=" flex"
+              style={({ isActive }) =>
+                isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+              }
+              > 
+                <p className="flex gap-4 items-center"><MdOutlineLiveHelp />Help Center</p>
+                </NavLink>
+                <NavLink to="setting"
+              className="flex"
+              style={({ isActive }) =>
+                isActive ? { borderLeft: "2px solid", backgroundColor: "#d5e9fe" } : { fontWeight: "bold" }
+              }
+              > 
+                <p className="flex gap-4 items-center"><CiSettings />Settings</p>
+                </NavLink>
+                <p>{user ?   <button className="flex items-center gap-2"  onClick={logOut}><CiLogin className="text-xl"/>logout</button> :  <NavLink to="/login"><h1 className="flex items-center gap-2">Log in <span className="bg-[#feeceb] p-2 rounded-full"><CiLogout /></span></h1></NavLink>}</p>
+                      </div>
                     </ul>
                   </div>
                 </div>

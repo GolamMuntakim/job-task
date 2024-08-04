@@ -1,9 +1,5 @@
 import { IoLocationSharp } from "react-icons/io5";
-import { FaCar, FaHome, FaUserFriends } from "react-icons/fa";
-import { CiSearch, CiHeart, CiSettings, CiLogout } from "react-icons/ci";
-import { IoDocumentTextOutline } from "react-icons/io5";
-import { MdOutlineLiveHelp } from "react-icons/md";
-import { IoIosNotificationsOutline } from "react-icons/io";
+import { FaCar} from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -24,14 +20,14 @@ const Home = () => {
     return (
         <div>
              {/* featured therapist section */}
-             <div className="flex justify-between bg-white mt-6 w-[960px] mx-auto p-4 rounded-md ">
+             <div className="flex flex-col lg:flex-row justify-between bg-white mt-6 w-full lg:w-[960px] mx-auto p-4 rounded-md ">
                 <div>
-                  <h1 className="font-semibold text-xl">I'am Looking For Massege Therapist Near</h1>
+                  <h1 className="font-semibold text-md lg:text-xl">I'am Looking For Massege Therapist Near</h1>
                   <p className="mt-2">I'am using this site, I agree to be bound by the <a className="underline text-blue-700" href="#">Terms of service</a><br />
                     and <a className="underline text-blue-700" href="#">Privacy policy</a>
                   </p>
-                  <div>
-                    <label className="input w-[500px] input-bordered flex items-center gap-2 mt-4
+                  <div className="hidden lg:flex">
+                    <label className="input w-full lg:w-[500px] input-bordered flex items-center gap-2 mt-4
                    bg-[#eef3f4]">
                       <input type="text" className="grow bg-[#eef3f4] " placeholder="ZIP Code or City Name" />
                       <p className="bg-[#146bcb] text-white p-2 rounded-xl">Go</p>
@@ -41,11 +37,18 @@ const Home = () => {
                 <div>
                   <img src="image/home.JPG" alt="" />
                 </div>
+                <div className="lg:hidden flex">
+                    <label className="input w-[500px] input-bordered flex items-center gap-2 mt-4
+                   bg-[#eef3f4]">
+                      <input type="text" className="grow bg-[#eef3f4] " placeholder="ZIP Code or City Name" />
+                      <p className="bg-[#146bcb] text-white p-2 rounded-xl">Go</p>
+                    </label>
+                  </div>
               </div>
               {/* slider */}
               <div>
-                <h1 className="mt-2 ml-4 text-3xl font-bold">Featured Therapist</h1>
-                <div className="w-[950px] z-0 bg-white mx-auto p-10 mt-4">
+                <h1 className="mt-2 lg:ml-4 text-3xl font-bold">Featured Therapist</h1>
+                <div className="hidden lg:flex w-full lg:w-[950px] z-0 bg-white mx-auto lg:p-10 mt-4">
                   <Swiper
                     slidesPerView={3}
                     centeredSlides={false}
@@ -62,10 +65,10 @@ const Home = () => {
                     }}
                     navigation={true}
                     modules={[Navigation]}
-                    className="mySwiper w-[900px] h-[450px] mt-4 bg-white "
+                    className="mySwiper w-full lg:w-[900px] h-[450px] mt-4 bg-white"
                   >
                     <SwiperSlide>
-                      <div className="w-56">
+                      <div className="w-full lg:w-56">
                         <figure>
                           <img
                             className="w-full h-[200px] rounded-md"
@@ -83,7 +86,7 @@ const Home = () => {
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                      <div className="w-56">
+                      <div className="w-full lg:w-56">
                         <figure>
                           <img
                             className="w-full h-[200px] rounded-md"
@@ -101,7 +104,7 @@ const Home = () => {
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                      <div className="  w-56 ">
+                      <div className=" w-full lg:w-56 ">
                         <figure>
                           <img
                             className="w-full h-[200px] rounded-md"
@@ -119,7 +122,99 @@ const Home = () => {
                       </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                      <div className="  w-56 ">
+                      <div className=" w-full lg:w-56 ">
+                        <figure>
+                          <img
+                            className="w-full h-[200px] rounded-md"
+                            src="image/1.JPG"
+                            alt="Shoes" />
+                        </figure>
+                        <div className="card-body">
+                          <h2 className="card-title">Alexender Cart</h2>
+                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
+                          <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
+                          <div className="card-actions w-full">
+                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  </Swiper>
+                </div>
+                <div className="lg:hidden flex  w-full lg:w-[950px] z-0 bg-white mx-auto mt-4">
+                  <Swiper
+                    slidesPerView={1}
+                    centeredSlides={false}
+                    slidesPerGroupSkip={2}
+                    grabCursor={true}
+                    keyboard={{
+                      enabled: true,
+                    }}
+                    breakpoints={{
+                      769: {
+                        slidesPerView: 3,
+                        slidesPerGroup: 2,
+                      },
+                    }}
+                    modules={[Navigation]}
+                    className="mySwiper w-full lg:w-[900px] h-[450px]  mt-4 bg-white"
+                  >
+                    <SwiperSlide>
+                      <div className="w-full lg:w-56">
+                        <figure>
+                          <img
+                            className="w-full h-[200px] rounded-md"
+                            src="image/1.JPG"
+                            alt="Shoes" />
+                        </figure>
+                        <div className="card-body">
+                          <h2 className="card-title">Alexender Cart</h2>
+                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
+                          <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
+                          <div className="card-actions w-full">
+                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="w-full lg:w-56">
+                        <figure>
+                          <img
+                            className="w-full h-[200px] rounded-md"
+                            src="image/1.JPG"
+                            alt="Shoes" />
+                        </figure>
+                        <div className="card-body">
+                          <h2 className="card-title">Alexender Cart</h2>
+                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
+                          <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
+                          <div className="card-actions w-full">
+                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="w-full lg:w-56 ">
+                        <figure>
+                          <img
+                            className="w-full h-[200px] rounded-md"
+                            src="image/1.JPG"
+                            alt="Shoes" />
+                        </figure>
+                        <div className="card-body">
+                          <h2 className="card-title">Alexender Cart</h2>
+                          <p className="flex items-center gap-4"><IoLocationSharp />123 Elm Street, New york</p>
+                          <p className="flex items-center gap-4"><FaCar />Mobile & In-Studio</p>
+                          <div className="card-actions w-full">
+                            <button className="btn bg-[#d4e9ff] w-full underline hover:bg-[#146bcb] hover:text-white">See Details</button>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className=" w-full lg:w-56 ">
                         <figure>
                           <img
                             className="w-full h-[200px] rounded-md"
@@ -141,10 +236,10 @@ const Home = () => {
               </div>
               {/* testimonial section */}
             
-              <div className="flex w-[1000px] mt-10 ">
+              <div className="flex lg:flex-row flex-col w-full lg:w-[1000px] mt-10 ">
              
-                <div className="w-[490px]">
-                <div className="mt-4 ml-5">
+                <div className="w-full lg:w-[490px]">
+                <div className="mt-4 lg:ml-5">
                 <h1 className="font-bold text-3xl">Featured Testimonial</h1>
               </div>
                 <div className=" bg-white h-[500px] p-4 ml-4 rounded-md mt-4">
@@ -280,12 +375,12 @@ const Home = () => {
                   </Swiper>
                 </div>
                 </div>
-                <div className="w-[490px]">
-                <div className="mt-4 ml-5">
+                <div className="w-full lg:w-[490px]">
+                <div className="mt-20 lg:mt-6 lg:ml-5">
                 <h1 className="font-bold text-3xl">Popular Cities</h1>
               </div>
-                <div className=" bg-white h-[500px] p-4 ml-4 rounded-md mt-4">
-               <div className="grid grid-cols-3 col-span-3 gap-10">
+                <div className=" bg-white h-[500px] lg:p-4 lg:ml-4 rounded-md mt-4">
+               <div className="grid grid-cols-3 col-span-3 gap-5 lg:gap-10">
                 <a className="text-blue-600 underline" href="#">Atlana,GA</a>
                 <a className="text-blue-600 underline"  href="#">Indianapolis,IN</a>
                 <a className="text-blue-600 underline"  href="#">Philadephea,PA</a>
