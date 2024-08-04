@@ -1,21 +1,19 @@
-import { IoLocationSharp } from "react-icons/io5";
-import { FaCar, FaHome, FaUserFriends } from "react-icons/fa";
+import {  FaHome, FaUserFriends } from "react-icons/fa";
 import { CiSearch, CiHeart, CiSettings, CiLogout } from "react-icons/ci";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { MdOutlineLiveHelp } from "react-icons/md";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { FaLocationDot } from "react-icons/fa6";
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import '../src/App.css';
-import Home from "./HomeComponent/Home";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import {  NavLink, Outlet } from "react-router-dom";
+import UseAuth from "./HomeComponent/UseAuth";
 
 function App() {
-
+  const {user, logOut} = UseAuth()
+  // console.log(user)
   return (
     <>
       <div className="max-w-[1250px] p-0">
@@ -95,11 +93,13 @@ function App() {
                   <a className=" ">
                     <div className="flex gap-4">
                       <div>
-                        <img className="rounded-full w-12" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                        {
+                          user?.photoURL ? <img className="rounded-full w-12" src={user?.photoURL} /> : <img className="rounded-full w-12" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                        }
                       </div>
                       <div>
-                        <h1>Name</h1>
-                        <h1>Email</h1>
+                        <h1>{user?.displayName}</h1>
+                        <h1>{user?.email}</h1>
                       </div>
                     </div>
                   </a>
@@ -107,7 +107,8 @@ function App() {
                 <div className="w-[200px]">
                   <div className="flex items-center gap-2">
                     <div className="text-2xl"><IoIosNotificationsOutline /></div>
-                    <NavLink to="/login"><h1 className="flex items-center gap-2">Log Out <span className="bg-[#feeceb] p-2 rounded-full"><CiLogout /></span></h1></NavLink>
+                    <NavLink to="/login"><h1 className="flex items-center gap-2">Log in <span className="bg-[#feeceb] p-2 rounded-full"><CiLogout /></span></h1></NavLink>
+                    <button  onClick={logOut}>logout</button>
                   </div>
                   <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
