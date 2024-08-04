@@ -19,7 +19,8 @@ function App() {
       <div className="max-w-[1250px] p-0">
         <div className="flex  justify-center p-0">
           {/* sidebar  */}
-          <div className="w-[210px] bg-white p-10">
+        <div className="hidden lg:flex">
+        <div className=" w-[210px] bg-white p-10">
             <h1 className="text-4xl  text-blue-500 text-center mt-10">Logo</h1>
             <div className="mt-8">
               <div className="space-y-4 w-[210px]">
@@ -83,6 +84,7 @@ function App() {
               </div>
             </div>
           </div>
+        </div>
 
           {/* main */}
           <div className="w-[1000px] bg-[#eef3f4]  p-0">
@@ -107,8 +109,9 @@ function App() {
                 <div className="w-[200px]">
                   <div className="flex items-center gap-2">
                     <div className="text-2xl"><IoIosNotificationsOutline /></div>
-                    <NavLink to="/login"><h1 className="flex items-center gap-2">Log in <span className="bg-[#feeceb] p-2 rounded-full"><CiLogout /></span></h1></NavLink>
-                    <button  onClick={logOut}>logout</button>
+                    {user ?   <button  onClick={logOut}>logout</button> :  <NavLink to="/login"><h1 className="flex items-center gap-2">Log in <span className="bg-[#feeceb] p-2 rounded-full"><CiLogout /></span></h1></NavLink>}
+                   
+                  
                   </div>
                   <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

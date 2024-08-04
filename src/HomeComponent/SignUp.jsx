@@ -21,15 +21,15 @@ const SignUp = () => {
     } = useForm()
     const navigate = useNavigate();
     const from = '/login'
-    const uppercaseRegx = /^(?=.*[a-z])(?=.*[A-Z])/;
+    // const uppercaseRegx = /^(?=.*[a-z])(?=.*[A-Z])/;
 
     const onSubmit = data => {
         const { email, password,
             //  image, 
             fullname } = data;
-        if (!uppercaseRegx.test(password)) {
-            return;
-        }
+        // if (!uppercaseRegx.test(password)) {
+        //     return;
+        // }
       
         createUser(email, password).then(() => {
             updateUserProfile(fullname, email)
@@ -107,7 +107,7 @@ const SignUp = () => {
                                 </label>
                                 <label className="input input-bordered flex items-center gap-2">
                                     <input type={showPassword ? "text" : "password"} className="grow" placeholder="Enter your password"
-                                        {...register("password", { required: true, minLength: 6, validate: value => uppercaseRegx.test(value) || "password must have an at least one uppercase and one lowercase letter" })}
+                                        {...register("password")}
                                     />
                                     <span className="" onClick={() => setShowPassword(!showPassword)}
                                     >
@@ -117,9 +117,6 @@ const SignUp = () => {
                                     </span>
                                     {errors.password && errors.password.type === "required" && <small className="text-red-500">This field is required</small>}
 
-                                    {errors.password && errors.password.type === "minLength" && <small className="text-red-500">password must have 6 charecter</small>}
-
-                                    {errors.password && errors.password.type === "validate" && <small className="text-red-500">{errors.password.message}</small>}
 
 
                                 </label>
@@ -129,8 +126,16 @@ const SignUp = () => {
                                     <span className="label-text">Confirm Password</span>
                                 </label>
                                 <label className="input input-bordered flex items-center gap-2">
-                                    <input type="password" className="grow" placeholder="Enter your password" />
-                                    <span> <FaEye /></span>
+                                    <input type={showPassword ? "text" : "password"} className="grow" placeholder="Enter your password" 
+                                    {...register("password")}
+                                    />
+                                    <span className="" onClick={() => setShowPassword(!showPassword)}
+                                    >
+                                        {
+                                            showPassword ? <FaRegEyeSlash /> : <FaRegEye />
+                                        }
+                                    </span>
+                                    {errors.password && errors.password.type === "required" && <small className="text-red-500">This field is required</small>}
                                 </label>
                             </div>
                             <div className="flex justify-between items-center">
