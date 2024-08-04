@@ -84,7 +84,7 @@ const filteredCities = citiesList.filter(city => city.toLowerCase().includes(sea
               </div>
               {/* slider */}
               <div>
-                <h1 className="mt-2 lg:ml-4 text:lg lg:text-3xl font-bold">Featured Therapist</h1>
+                <h1 className="mt-2 lg:ml-4 text-lg lg:text-3xl font-bold">Featured Therapist</h1>
                 <div className="hidden lg:flex w-full lg:w-[950px] z-0 bg-white mx-auto lg:p-10 mt-4">
                   <Swiper
                     slidesPerView={3}
@@ -280,7 +280,7 @@ const filteredCities = citiesList.filter(city => city.toLowerCase().includes(sea
               </div>
               {/* testimonial section */}
             
-              <div className="flex lg:flex-row flex-col w-full lg:w-[1000px] mt-10 ">
+              <div className="flex lg:flex-row flex-col w-full lg:w-[1000px] mt-20 ">
              
                 <div className="w-full lg:w-[490px]">
                 <div className="mt-4 lg:ml-5">
