@@ -44,18 +44,7 @@ const AuthProvider = ({children}) => {
         })
         return ()=>unsubscribe()
     },[auth])
-    // useEffect(() => {
-    //     const unsubscribe = onAuthStateChanged(auth, (user) => {
-    //       setLoading(true);
-    //       if (user) {
-    //         setUser(user);
-    //       } else {
-    //         setUser(null);
-    //       }
-    //       setLoading(false);
-    //     });
-    //     return () => unsubscribe();
-    //   }, [auth]);
+    
     const value = {createUser, user,logOut,updateUserProfile,logInUser,setUser,googleLogin,loading}
     return (
         <AuthContext.Provider value={value}>

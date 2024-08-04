@@ -41,7 +41,7 @@ const Login = () => {
         })
       }
       if(loading){
-        return <div className="flex justify-center items-center"><span className="loading loading-bars loading-lg"></span></div>
+        return <div className="flex justify-center items-center mt-64"><span className="loading loading-bars loading-lg"></span></div>
       }
       const handleSocial=(social)=>{
         social()
@@ -53,7 +53,7 @@ const Login = () => {
       }
     return (
         <div>
-            <div className="hero bg-base-100 min-h-screen bg-[url('/image/log.JPG')]">
+            <div className="hero bg-base-100 min-h-screen lg:flex hidden">
                 <div className="hero-content flex-col lg:flex-row-reverse w-full lg:w-[1200px]">
                     <div className="hidden lg:flex w-[500px]">
                         <Swiper pagination={true} modules={[Pagination]} className="mySwiper h-[550px] bg-[url('../../public/image/bg.JPG')] rounded-md" >
@@ -84,7 +84,7 @@ const Login = () => {
                         </Swiper>
                     </div>
 
-                    <div className="card bg-base-100 fixed lg:w-[500px] p-14 mt-72">
+                    <div className="card bg-base-100  max-w-sm shrink-0 w-full lg:w-[500px]">
                         <div>
                             <h1 className="text-4xl text-blue-600 ml-4">LOGO</h1>
                             <h1 className="font-semibold ml-4 text-2xl mt-2">Log In To Your Account</h1>
@@ -138,6 +138,73 @@ const Login = () => {
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Sign in</button>
+                            </div>
+                        </form>
+                        <p className="text-center text-sm">Don't Have Any Account? <Link to="/signup"><span className="underline text-blue-600">Create Account</span>
+                        </Link></p>
+                    </div>
+                </div>
+            </div>
+            <div className="hero bg-base-100 min-h-screen lg:hidden flex  bg-[url('/image/log.JPG')]">
+            <div className="mb-[500px] text-center w-full">
+               <p className="text-5xl  text-[#3a7ce4] ml-36">Logo</p>
+               <p className="-mr-32 text-center mt-4 text-white">Sign in to view all the<br />
+               message therapist</p>
+            </div>
+                <div className="hero-content flex-col lg:flex-row-reverse w-full lg:w-[1200px]">
+                    <div className="card bg-base-100  w-full lg:w-[500px] p-10 mt-80 mr-[250px]  fixed">
+                        <div>
+                            <h1 className="font-semibold text-center text-2xl mt-2">Log In To Your Account</h1>
+                            <p className="text-center mt-2">Welcome Back! Select a methode to log in:</p>
+                            <div className="flex gap-10 mt-2 ml-4">
+                                <button onClick={()=>handleSocial(googleLogin)} className="btn bg-[#e6e6e6]"><FcGoogle /> Google</button>
+                                <button className="btn bg-[#278cfe] text-white"><FaFacebookSquare />
+                                    Facebook</button>
+                            </div>
+                            <p className="text-sm mt-4 text-center">or continue with email</p>
+                        </div>
+                        <form onSubmit={handleSubmit(onSubmit)}  className="card-body">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input type="email" placeholder="Enter your email" className="input input-bordered" 
+                                 {...register("email",{required:true})} 
+                                />
+                                {errors.email && <small className="text-red-500">This field is required</small>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <label className="input input-bordered flex items-center gap-2">
+                                    <input type={showPassword? "text" : "password"} className="grow" placeholder="Enter your password"
+                                     {...register("password", {required:true})}
+                                     />
+                                   <span className="" onClick={()=>setShowPassword(!showPassword)}>
+            {
+              showPassword ? <FaRegEyeSlash/> : <FaRegEye/>
+            }
+          </span>
+          {errors.password && <small className="text-red-500">This field is required</small>}
+                                </label>
+
+                                <div className="flex justify-between items-center">
+                                    <div>
+                                        <label className="flex gap-2 mt-2 cursor-pointer">
+                                            <input type="checkbox" defaultChecked className="checkbox" />
+                                            <span className="label-text">Remember me</span>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <a href="#" className="text-sm underline text-blue-600">Forget Password</a>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div className="form-control mt-6">
+                                <button className="btn bg-[#146aca] text-white">Sign in</button>
                             </div>
                         </form>
                         <p className="text-center text-sm">Don't Have Any Account? <Link to="/signup"><span className="underline text-blue-600">Create Account</span>
