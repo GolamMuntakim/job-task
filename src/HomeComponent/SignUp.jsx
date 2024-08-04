@@ -1,5 +1,4 @@
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { FaEye } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -21,15 +20,13 @@ const SignUp = () => {
     } = useForm()
     const navigate = useNavigate();
     const from = '/login'
-    // const uppercaseRegx = /^(?=.*[a-z])(?=.*[A-Z])/;
+    
 
     const onSubmit = data => {
         const { email, password,
-            //  image, 
+          
             fullname } = data;
-        // if (!uppercaseRegx.test(password)) {
-        //     return;
-        // }
+      
       
         createUser(email, password).then(() => {
             updateUserProfile(fullname, email)

@@ -13,7 +13,7 @@ const NewListing = () => {
         const newPlaces = {name, image ,location,}
         console.log(newPlaces)
         //send to the server 
-        fetch('http://localhost:5000/new',{
+        fetch('https://server-eosin-chi.vercel.app/new',{
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'

@@ -11,7 +11,7 @@ const Search = () => {
     const [spots, setSpots] = useState(initialSpots);
     const [searchQuery, setSearchQuery] = useState("");
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://server-eosin-chi.vercel.app/delete/${id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())

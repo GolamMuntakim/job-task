@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       {
         path:"/",
         element:<Home></Home>,
-        loader:()=>fetch('http://localhost:5000/new')
+        loader:()=>fetch('https://server-eosin-chi.vercel.app/new')
       },
       {
         path:"new",
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
       {
         path:"search",
         element:<PrivateRoute><Search></Search></PrivateRoute>,
-        loader:()=>fetch('http://localhost:5000/new')
+        loader:()=>fetch('https://server-eosin-chi.vercel.app/new')
       },
       {
         path:"about",

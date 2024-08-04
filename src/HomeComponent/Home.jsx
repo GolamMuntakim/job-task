@@ -8,14 +8,13 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 import '.././App.css';
-import { useEffect, useState } from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import {  useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const initialSpots = useLoaderData()
-  // const [place, setPlace] = useState({})
-  // const {id} = useParams()
+ 
   console.log(initialSpots)
     const [isReadMore, setIsReadMore] = useState(false);
     const [searchInput, setSearchInput] = useState("");
@@ -48,15 +47,7 @@ const filteredCities = citiesList.filter(city => city.toLowerCase().includes(sea
     const toggleReadMore = () => {
       setIsReadMore(!isReadMore);
     };
-  //   useEffect(()=>{
-  //     fetch(`http://localhost:5000/single/${id}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //         setPlace(data)
-  //         console.log(data)
-         
-  //     })
-  // },[id])
+
   
     return (
         <div>
@@ -93,7 +84,7 @@ const filteredCities = citiesList.filter(city => city.toLowerCase().includes(sea
               </div>
               {/* slider */}
               <div>
-                <h1 className="mt-2 lg:ml-4 text-3xl font-bold">Featured Therapist</h1>
+                <h1 className="mt-2 lg:ml-4 text:lg lg:text-3xl font-bold">Featured Therapist</h1>
                 <div className="hidden lg:flex w-full lg:w-[950px] z-0 bg-white mx-auto lg:p-10 mt-4">
                   <Swiper
                     slidesPerView={3}
@@ -430,7 +421,7 @@ const filteredCities = citiesList.filter(city => city.toLowerCase().includes(sea
                 </div>
                 <div className="w-full lg:w-[490px]">
                 <div className="mt-20 lg:mt-6 lg:ml-5">
-                <h1 className="font-bold text-3xl">Popular Cities</h1>
+                <h1 className="font-bold text-lg lg:text-3xl">Popular Cities</h1>
               </div>
                 <div className=" bg-white h-[500px] lg:p-4 lg:ml-4 rounded-md mt-4">
                <div className="grid grid-cols-3 col-span-3 gap-5 lg:gap-10">
